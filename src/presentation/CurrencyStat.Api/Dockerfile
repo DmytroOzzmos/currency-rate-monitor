@@ -13,7 +13,6 @@ RUN dotnet build --no-restore -c Release --runtime linux-x64 -p:Platform=x64
 RUN dotnet publish --no-restore --no-build -c Release -o /publish --runtime linux-x64 -p:Platform=x64
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
-#ENV DATABASE "Server=172.17.0.0/16;Port=5432;Database=currency-stat;Username=postgres;Password=qwedsa"
 WORKDIR /app
 COPY --from=build /publish .
 
