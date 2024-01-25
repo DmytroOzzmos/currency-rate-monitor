@@ -6,6 +6,9 @@
 # dotenv files
 .env
 
+# ignore all dotnet launch settings
+**/Properties/launchSettings.json
+
 # User-specific files
 *.rsuser
 *.suo

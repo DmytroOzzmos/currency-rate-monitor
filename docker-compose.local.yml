@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  currency-info:
+    build:
+      context: .
+      dockerfile: src/presentation/CurrencyInfo/Dockerfile
+    ports:
+      - 5208:8080
+    depends_on:
+      - currency-db
+
+  currency-stat:
+    build:
+      context: .
+      dockerfile: src/presentation/CurrencyStat.Api/Dockerfile
+    ports:
+      - 5001:8080
+    depends_on:
+      - currency-info
+      - currency-db
+    environment:
+      - CurrencyInfoConfig__Host=currency-info:8080
+      - CurrencyInfoConfig__GetCurrencyInfoEndpoint=/ws/getCurrencyInfo
+      - DATABASE=Server=currency-db;Port=5432;Database=currency-stat;Username=postgres;Password=postgres
+
+  currency-db:
+    image: postgres
+    ports:
+      - "9010:5432"
+    volumes:
+      # persisting data. be carefull cleaning up docker - removing this volume will destroy DB
+      - pg_volume:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=currency-stat
+
+volumes:
+  pg_volume:
+    external: true
