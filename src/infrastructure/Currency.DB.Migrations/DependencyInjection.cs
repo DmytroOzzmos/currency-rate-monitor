@@ -18,5 +18,7 @@ public static class DependencyInjection
             options.UseNpgsql(dataSource, builder => builder.MigrationsAssembly("Currency.DB.Migrations"))
                 .UseSnakeCaseNamingConvention();
         });
+
+        services.AddCurrencyDb();
     }
 }

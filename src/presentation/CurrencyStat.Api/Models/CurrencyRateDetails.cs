@@ -1,4 +1,6 @@
-﻿namespace CurrencyStat.Api;
+﻿using Currency.DB;
+
+namespace CurrencyStat.Api;
 
 public class CurrencyRateDetails
 {
