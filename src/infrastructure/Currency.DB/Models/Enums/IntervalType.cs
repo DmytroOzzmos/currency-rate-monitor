@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace CurrencyStat.Api;
+namespace Currency.DB;
 
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum IntervalType

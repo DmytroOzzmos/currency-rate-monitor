@@ -1,4 +1,4 @@
-﻿namespace CurrencyStat.Api;
+﻿namespace Currency.DB;
 
 public class CurrencyRateByInterval
 {
